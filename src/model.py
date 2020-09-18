@@ -215,6 +215,8 @@ class InverseCookingModel(nn.Module):
 
             mask = sample_mask
             input_mask = mask.float().unsqueeze(1)
+            input_mask=input_mask.bool()
+
             input_feats = self.ingredient_encoder(ingr_ids)
 
         if self.ingrs_only:
@@ -226,6 +228,7 @@ class InverseCookingModel(nn.Module):
             true_ingrs[input_mask == 0] = self.pad_value
             input_feats = self.ingredient_encoder(true_ingrs)
             input_mask = input_mask.unsqueeze(1)
+
 
         ids, probs = self.recipe_decoder.sample(input_feats, input_mask, greedy, temperature, beam, img_features, 0,
                                                 last_token_value=1)

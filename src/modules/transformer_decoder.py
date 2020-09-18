@@ -204,11 +204,12 @@ class TransformerDecoderLayer(nn.Module):
             # attention on concatenation of encoder_out and encoder_aux, query self attn (x)
             kv = torch.cat((img_features, ingr_features), 0)
             mask = torch.cat((torch.zeros(img_features.shape[1], img_features.shape[0], dtype=torch.uint8).to(device),
-                              ingr_mask), 1)
+                              ingr_mask.byte()), 1)
+
             x, _ = self.cond_att(query=x,
                                     key=kv,
                                     value=kv,
-                                    key_padding_mask=mask,
+                                    key_padding_mask=mask.bool(),
                                     incremental_state=incremental_state,
                                     static_kv=True,
             )
@@ -282,7 +283,7 @@ class DecoderTransformer(nn.Module):
                 self.layer_norms_in[1](img_features)
 
         if ingr_mask is not None:
-            ingr_mask = (1-ingr_mask.squeeze(1)).byte()
+            ingr_mask = ((ingr_mask.squeeze(1)) ^ True)
 
         # embed positions
         if self.embed_positions is not None:

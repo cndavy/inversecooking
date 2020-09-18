@@ -246,9 +246,14 @@ def build_vocab_recipe1m(args):
                   'thyme_leave', 'boneless_pork', 'red_pepper', 'onion_dip', 'skinless_chicken', 'dark_chocolate',
                   'canned_corn', 'muffin', 'cracker_crust', 'bread_crumbs', 'frozen_broccoli',
                   'philadelphia', 'cracker_crust', 'chicken_breast']
-
+    base_words=["辣椒","西红柿","菠菜叶","火鸡胸脯","莴苣叶","鸡大腿","奶粉","面包屑","洋葱片",
+    "红辣椒","辣椒片","浓缩果汁","饼干屑","辣椒粉","调味料混合物","莳萝","辣椒酱","芽菜","烹饪喷雾","奶酪混合物",
+    "罗勒叶","菠萝块","棉花糖","智利粉","奶酪混合","玉米仁","番茄酱","鸡","饼干皮","浓缩柠檬水","红辣椒","蘑菇帽","蘑菇帽","面包鸡",
+    "冷冻菠萝","菠萝块","调味料混合物","海藻","洋葱片","肉汤颗粒","生菜叶","馅料混合物","欧芹片","鸡胸肉",
+    "罗勒叶","百吉饼","绿茶","花生酱","葱","新鲜香菜","面包鸡","辣椒","薰衣草干","白巧克力","莳萝草","蛋糕什锦","奶酪什锦","火鸡胸脯","鸡大腿","罗勒叶",
+    "柑桔","月桂","白菜头","开心果","奶酪蘸酱","百里香叶","去骨猪肉","红辣椒","洋葱酱","去皮鸡肉","黑巧克力",
+    "玉米罐头","松饼","饼干皮","面包屑","冷冻西兰花","费城","饼干皮","鸡胸肉"]
     for base_word in base_words:
-
         if base_word not in counter_ingrs.keys():
             counter_ingrs[base_word] = 1
 
